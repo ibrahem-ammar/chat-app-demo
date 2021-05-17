@@ -2,9 +2,9 @@
 <script>
   // Enable pusher logging - don't include this in production
   Pusher.logToConsole = true;
-  var pusher = new Pusher("{{ config('chatify.pusher.key') }}", {
+  var pusher = new Pusher("{{ config('custom.pusher.key') }}", {
     encrypted: true,
-    cluster: "{{ config('chatify.pusher.options.cluster') }}",
+    cluster: "{{ config('custom.pusher.options.cluster') }}",
     authEndpoint: '{{route("pusher.auth")}}',
     auth: {
         headers: {
@@ -13,7 +13,7 @@
     }
   });
 </script>
-<script src="{{ asset('js/chatify/code.js') }}"></script>
+<script src="{{ asset('assets/js/code.js') }}"></script>
 <script>
   // Messenger global variable - 0 by default
   messenger = "{{ @$id }}";

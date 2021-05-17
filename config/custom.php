@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'name' => env('CHATIFY_NAME', 'Chatify Messenger'),
+    'name' => env('CHAT_NAME', 'Messenger'),
 
     /*
     |--------------------------------------------------------------------------
@@ -22,10 +22,10 @@ return [
     | This value is the path of the package or in other meaning, it is the prefix
     | of all the registered routes in this package.
     |
-    | e.g. : app.test/chatify
+    | e.g. : app.test/chat
     */
 
-    'path' => env('CHATIFY_PATH', 'chat'),
+    'path' => env('CHAT_PATH', 'chat'),
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'middleware' => env('CHATIFY_MIDDLEWARE', 'auth'),
+    'middleware' => env('CHAT_MIDDLEWARE', 'auth'),
 
     /*
     |--------------------------------------------------------------------------

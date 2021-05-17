@@ -14,9 +14,9 @@
                         </div>
                     @endif
 
-                    Chatify Messenger Demo
+                    Chat Messenger Demo
                     <p>
-                        <a href="./{{config('chatify.path')}}">Messenger</a>
+                        <a href="./{{config('custom.path')}}">Messenger</a>
                     </p>
                     search and contact someone to add it to your contacts list
                 </div>

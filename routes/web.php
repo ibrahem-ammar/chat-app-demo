@@ -1,31 +1,23 @@
 <?php
-/**
- * -----------------------------------------------------------------
- * NOTE : There is two routes has a name (user & group),
- * any change in these two route's name may cause an issue
- * if not modified in all places that used in (e.g Chatify class,
- * Controllers, chatify javascript file...).
- * -----------------------------------------------------------------
- */
 
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'MessagesController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'MessagesController@index')->name('home');
 
 
-Route::prefix(config('chatify.path'))->group(function () {
+Route::prefix(config('custom.path'))->group(function () {
 
 /*
-* This is the main app route [Chatify Messenger]
+* This is the main app route [Chat Messenger]
 */
-Route::get('/', 'MessagesController@index')->name(config('chatify.path'));
+Route::get('/', 'MessagesController@index')->name(config('custom.path'));
 
 /**
  *  Fetch info for specific id [user/group]
@@ -45,7 +37,7 @@ Route::post('/fetchMessages', 'MessagesController@fetch')->name('fetch.messages'
 /**
  * Download attachments route to create a downloadable links
  */
-Route::get('/download/{fileName}', 'MessagesController@download')->name(config('chatify.attachments.route'));
+Route::get('/download/{fileName}', 'MessagesController@download')->name(config('custom.attachments.route'));
 
 /**
  * Authintication for pusher private channels

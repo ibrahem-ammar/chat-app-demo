@@ -3,7 +3,7 @@
     <span class="imageModal-close">&times;</span>
     <img class="imageModal-content" id="imageModalBoxSrc">
   </div>
-  
+
   {{-- ---------------------- Delete Modal ---------------------- --}}
   <div class="app-modal" data-name="delete">
       <div class="app-modal-container">
@@ -39,7 +39,7 @@
                   <div class="app-modal-body">
                       {{-- Udate profile avatar --}}
                       <div class="avatar av-l upload-avatar-preview"
-                      style="background-image: url('{{ asset('/storage/'.config('chatify.user_avatar.folder').'/'.Auth::user()->avatar) }}');"
+                      style="background-image: url('{{ asset('/storage/'.config('custom.user_avatar.folder').'/'.Auth::user()->avatar) }}');"
                       ></div>
                       <p class="upload-avatar-details"></p>
                       <label class="app-btn a-btn-primary update">
@@ -53,7 +53,7 @@
                          data-mode="{{ Auth::user()->dark_mode > 0 ? 1 : 0 }}"></span></p>
                       {{-- change messenger color  --}}
                       <p class="divider"></p>
-                      <p class="app-modal-header">Change {{ config('chatify.name') }} Color</p>
+                      <p class="app-modal-header">Change {{ config('custom.name') }} Color</p>
                       <div class="update-messengerColor">
                             <a href="javascript:void(0)" class="messengerColor-1"></a>
                             <a href="javascript:void(0)" class="messengerColor-2"></a>

@@ -156,7 +156,7 @@ class MessagesController extends Controller
     {
         // dd('hello');
         // get current route
-        $route = (in_array(request()->route()->getName(), ['user', config('chatify.path')]))
+        $route = (in_array(request()->route()->getName(), ['user', config('custom.path')]))
             ? 'user'
             : request()->route()->getName();
 
@@ -190,7 +190,7 @@ class MessagesController extends Controller
         return Response::json([
             'favorite' => $favorite,
             'fetch' => $fetch,
-            'user_avatar' => asset('/storage/' . config('chatify.user_avatar.folder') . '/' . $fetch->avatar),
+            'user_avatar' => asset('/storage/' . config('custom.user_avatar.folder') . '/' . $fetch->avatar),
         ]);
     }
 
@@ -203,7 +203,7 @@ class MessagesController extends Controller
      */
     public function download($fileName)
     {
-        $path = storage_path() . '/app/public/' . config('chatify.attachments.folder') . '/' . $fileName;
+        $path = storage_path() . '/app/public/' . config('custom.attachments.folder') . '/' . $fileName;
         if (file_exists($path)) {
             return Response::download($path, $fileName);
         } else {
@@ -250,7 +250,7 @@ class MessagesController extends Controller
                     $attachment_title = $file->getClientOriginalName();
                     // upload attachment and store the new name
                     $attachment = Str::uuid() . "." . $file->getClientOriginalExtension();
-                    $file->storeAs("public/" . config('chatify.attachments.folder'), $attachment);
+                    $file->storeAs("public/" . config('custom.attachments.folder'), $attachment);
                 } else {
                     $error_msg = "File extension not allowed!";
                 }
@@ -275,7 +275,7 @@ class MessagesController extends Controller
             $messageData = $this->fetchMessage($messageID);
 
             // send to user using pusher
-           $this->push('private-chatify', 'messaging', [
+           $this->push('private-chat', 'messaging', [
                 'from_id' => Auth::user()->id,
                 'to_id' => $request['id'],
                 'message' => $this->messageCard($messageData, 'default')
@@ -671,7 +671,7 @@ class MessagesController extends Controller
                 $msg->delete();
                 // delete file attached if exist
                 if ($msg->attachment) {
-                    $path = storage_path('app/public/'.config('chatify.attachments.folder').'/'.explode(',', $msg->attachment)[0]);
+                    $path = storage_path('app/public/'.config('custom.attachments.folder').'/'.explode(',', $msg->attachment)[0]);
                     if(file_exists($path)){
                         @unlink($path);
                     }
@@ -718,8 +718,8 @@ class MessagesController extends Controller
             if ($file->getSize() < 150000000) {
                 if (in_array($file->getClientOriginalExtension(), $allowed_images)) {
                     // delete the older one
-                    if (Auth::user()->avatar != config('chatify.user_avatar.default')) {
-                        $path = storage_path('app/public/' . config('chatify.user_avatar.folder') . '/' . Auth::user()->avatar);
+                    if (Auth::user()->avatar != config('custom.user_avatar.default')) {
+                        $path = storage_path('app/public/' . config('custom.user_avatar.folder') . '/' . Auth::user()->avatar);
                         if (file_exists($path)) {
                             @unlink($path);
                         }
@@ -727,7 +727,7 @@ class MessagesController extends Controller
                     // upload
                     $avatar = Str::uuid() . "." . $file->getClientOriginalExtension();
                     $update = User::where('id', Auth::user()->id)->update(['avatar' => $avatar]);
-                    $file->storeAs("public/" . config('chatify.user_avatar.folder'), $avatar);
+                    $file->storeAs("public/" . config('custom.user_avatar.folder'), $avatar);
                     $success = $update ? 1 : 0;
                 } else {
                     $msg = "File extension not allowed!";

@@ -6,7 +6,7 @@
             <sub title="{{ $fullTime }}">{{ $time }}</sub>
             {{-- If attachment is a file --}}
             @if(@$attachment[2] == 'file')
-            <a href="{{ route(config('chatify.attachments.route'),['fileName'=>$attachment[0]]) }}" style="color: #595959;" class="file-download">
+            <a href="{{ route(config('custom.attachments.route'),['fileName'=>$attachment[0]]) }}" style="color: #595959;" class="file-download">
                 <span class="fas fa-file"></span> {{$attachment[1]}}</a>
             @endif
         </p>
@@ -15,7 +15,7 @@
     @if(@$attachment[2] == 'image')
     <div>
         <div class="message-card">
-            <div class="image-file chat-image" style="width: 250px; height: 150px;background-image: url('{{ asset('storage/'.config('chatify.attachments.folder').'/'.$attachment[0]) }}')">
+            <div class="image-file chat-image" style="width: 250px; height: 150px;background-image: url('{{ asset('storage/'.config('custom.attachments.folder').'/'.$attachment[0]) }}')">
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <span class="fas fa-{{ $seen > 0 ? 'check-double' : 'check' }} seen"></span> {{ $time }}</sub>
                 {{-- If attachment is a file --}}
             @if(@$attachment[2] == 'file')
-            <a href="{{ route(config('chatify.attachments.route'),['fileName'=>$attachment[0]]) }}" class="file-download">
+            <a href="{{ route(config('custom.attachments.route'),['fileName'=>$attachment[0]]) }}" class="file-download">
                 <span class="fas fa-file"></span> {{$attachment[1]}}</a>
             @endif
         </p>
@@ -40,7 +40,7 @@
     @if(@$attachment[2] == 'image')
     <div>
         <div class="message-card mc-sender">
-            <div class="image-file chat-image" style="width: 250px; height: 150px;background-image: url('{{ asset('storage/'.config('chatify.attachments.folder').'/'.$attachment[0]) }}')">
+            <div class="image-file chat-image" style="width: 250px; height: 150px;background-image: url('{{ asset('storage/'.config('custom.attachments.folder').'/'.$attachment[0]) }}')">
             </div>
         </div>
     </div>

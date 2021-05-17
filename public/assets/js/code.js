@@ -465,7 +465,7 @@ function cancelUpdatingAvatar() {
  */
 
 // subscribe to the channel
-var channel = pusher.subscribe('private-chatify');
+var channel = pusher.subscribe('private-chat');
 
 // Listen to messages, and append if data received
 channel.bind('messaging', function (data) {
